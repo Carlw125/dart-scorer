@@ -1,0 +1,39 @@
+h1 {
+    text-align: center;
+}
+
+body {
+    position: absolute;
+    height: 500px;
+    width: 800px;
+    margin: 50px;
+}
+
+#displayOne{
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    font-size: 30px;
+}
+
+#displayOne div {
+    border-style: solid;
+}
+
+#displayTwo {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    height: 300px;
+}
+
+#startGame {
+    position: absolute;
+    margin: 50px;
+    margin-left: 200px;
+}
+
+#thrower {
+    position: absolute;
+    margin: 50px;
+    margin-left: 275px;
+}
+

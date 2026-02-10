@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="dartScorer.css"/>
+    <title>Darts Scorer</title>
+</head>
+<body>
+    <h1>Darts Scorer</h1>
+    <div id="displayOne" style="display: none;"><!--add style="display: none;" once finished styling-->
+        <div id="playerOneLegsTitle">Legs</div>
+        <div id="playerOneLegs">0</div>
+        <div id="playerTwoLegsTitle">Legs</div>
+        <div id="playerTwoLegs">0</div>
+        <div id="playerOneName"></div>
+        <div id="playerOneScore"></div>
+        <div id="playerTwoName"></div>
+        <div id="playerTwoScore"></div>
+    </div>
+    <div id="displayTwo" style="display: none;">
+        <button id="undo">Undo</button>
+        <input id="userInput" type="number" placeholder="Enter Score..."></input>
+        <button id="clear">Clear</button>
+        <button onclick="numBtnInput(0)">0</button>
+        <button onclick="numBtnInput(1)">1</button>
+        <button onclick="numBtnInput(2)">2</button>
+        <button onclick="numBtnInput(3)">3</button>
+        <button onclick="numBtnInput(4)">4</button>
+        <button onclick="numBtnInput(5)">5</button>
+        <button onclick="numBtnInput(6)">6</button>
+        <button onclick="numBtnInput(7)">7</button>
+        <button onclick="numBtnInput(8)">8</button>
+        <button onclick="numBtnInput(9)">9</button>
+        <button id="submit">Submit</button>
+        <div id="test"></div>
+    </div>
+    <div id="startGame"> <!--display none only whilst doing CSS on display div-->
+        <legend>Players Names</legend>
+        <input placeholder="Player One Name" id="playerOneNameInput">
+        <input placeholder="Player Two Name" id="playerTwoNameInput">
+        <legend>Starting Score</legend>
+        <label for="1001"><input type="radio" id="1001" name="starting">1001</label>
+        <label for="501"><input type="radio" id="501" checked name="starting">501</label>
+        <label for="301"><input type="radio" id="301" name="starting">301</label>
+        <button id="start">Next</button>
+    </div>
+    <div id="thrower" style="display: none;">
+        <legend>Who Throws First?</legend>
+        <label for="playerOneFirst"></label><input type="radio" id="playerOneFirst" name="throw" checked><span id="nameOne">
+        </span></label>
+        <label for="playerTwoFirst"><input type="radio" id="playerTwoFirst" name="throw"><span id="nameTwo"></span></label>
+        <button id="throwerButton">Next</button>
+    </div>
+    <script src="dartScorer.js"></script>
+</body>
+</html>
