@@ -9,18 +9,18 @@
 <body>
     <h1>Darts Scorer</h1>
     <div id="displayOne" style="display: none;"><!--add style="display: none;" once finished styling-->
-        <div id="playerOneLegsTitle">Legs</div>
-        <div id="playerOneLegs">0</div>
-        <div id="playerTwoLegsTitle">Legs</div>
-        <div id="playerTwoLegs">0</div>
-        <div id="playerOneName"></div>
-        <div id="playerOneScore"></div>
-        <div id="playerTwoName"></div>
-        <div id="playerTwoScore"></div>
+        <div id="playerOneLegsTitle" class="headers">Legs</div>
+        <div id="playerOneLegs" class="headers">0</div>
+        <div id="playerTwoLegsTitle" class="headers">Legs</div>
+        <div id="playerTwoLegs" class="headers">0</div>
+        <div id="playerOneName" class="headers"></div>
+        <div id="playerOneScore" class="headers"></div>
+        <div id="playerTwoName" class="headers"></div>
+        <div id="playerTwoScore" class="headers"></div>
     </div>
     <div id="displayTwo" style="display: none;">
         <button id="undo">Undo</button>
-        <input id="userInput" type="number" placeholder="Enter Score..."></input>
+        <input id="userInput" type="number" placeholder="Enter Score..." autofocus></input>
         <button id="clear">Clear</button>
         <button onclick="numBtnInput(0)">0</button>
         <button onclick="numBtnInput(1)">1</button>

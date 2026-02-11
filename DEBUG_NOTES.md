@@ -25,3 +25,9 @@ a running log of bigs, fixes, and lessons learned.
 ### Cause: userInput.value automatically turns an integer into a string
 ### Fix: added "+" before lastScore to turn it back into integer. The problem never arrised on the minusScore function ass - automatically turns strings into integers so I never realised userInput.value was creating a string in the first place.
 ### Lesson: taking .value turns integer into string. Use + before the variable to turn back into integer. MAIN LESSON: Number + Number = Number. String + anything = string. Number - number = number. Number - String = number.
+
+### Bug: Input field for players names moving out of position when trying to increase font size.
+### Sympton: Input field moves too far to the right when increasing font-size.
+### Cause:
+### Fix:
+### Lesson:

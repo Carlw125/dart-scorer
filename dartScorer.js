@@ -117,12 +117,12 @@ function whoThrows() {
 
 function marker() {
     if (currentPlayer == 0) {
-        playerTwoName.style.backgroundColor = "white";
-        playerOneName.style.backgroundColor = "blue";
+        playerTwoName.style.backgroundColor = "#a1a2b3";
+        playerOneName.style.backgroundColor = "green";
 
     } if (currentPlayer == 1) {
-        playerTwoName.style.backgroundColor = "blue";
-        playerOneName.style.backgroundColor = "white";
+        playerTwoName.style.backgroundColor = "green";
+        playerOneName.style.backgroundColor = "#a1a2b3";
     }
 }
 
@@ -175,6 +175,7 @@ function newLeg() {
         pTwoScore = 301;
         playerTwoScore.innerHTML = pTwoScore;
     }
+    lastScore = 0;
 } // Start refractoring all code before adding anymore features.//
 
 
