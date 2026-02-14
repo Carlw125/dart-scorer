@@ -21,7 +21,14 @@ const playerOneFirst = document.getElementById("playerOneFirst");
 const playerTwoFirst = document.getElementById("playerTwoFirst");
 const clearBtn = document.getElementById("clear");
 const undoBtn = document.getElementById("undo");
+const checkoutsContainer = document.getElementById("checkoutsDiv");
+let checkoutsData;
 
+fetch('./checkouts.json' )
+    .then((response) => response.json())
+    .then((json) => {
+        checkoutsData = json;
+    });
 
 let currentPlayer = 0;
 let playerThrowFirst = 0;
@@ -178,17 +185,30 @@ function newLeg() {
     lastScore = 0;
 } // Start refractoring all code before adding anymore features.//
 
+function checkout () { 
+    if (currentPlayer == 0) {
+        checkoutsContainer.innerHTML = checkoutsData[pOneScore];
+    } if (currentPlayer == 1) {
+        checkoutsContainer.innerHTML = checkoutsData[pTwoScore];
+    } if (checkoutsContainer.innerHTML == "undefined") {
+        checkoutsContainer.innerHTML = "";
+    }
+    
+}
+
 
 function winGame() {
     if(currentPlayer == 1 && pOneScore == 0) {
         pOneLegs++;
         document.getElementById("playerOneLegs").innerHTML = pOneLegs;
         newLeg();
+        checkoutsContainer.innerHTML = "";
         alert("Player one wins!");
     } if(currentPlayer == 0 && pTwoScore == 0) {{
         pTwoLegs++;
         document.getElementById("playerTwoLegs").innerHTML = pTwoLegs;
         newLeg();
+        checkoutsContainer.innerHTML = "";
         alert("Player two wins!");
     }}
 }
@@ -214,6 +234,7 @@ function minusScore() {
         currentPlayer--;
         marker();
     }
+    checkout();
     userInput.value = "";
     winGame();
 }
