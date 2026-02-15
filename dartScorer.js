@@ -47,6 +47,10 @@ function numBtnInput(value) {
     userInput.value += value;
 }
 
+function switchPlayer() {
+    return currentPlayer == 1 ? currentPlayer-- : currentPlayer++;
+}
+
 function undoLastScore() {
     if(lastScore == 0) {
         return;
@@ -54,14 +58,14 @@ function undoLastScore() {
     if(currentPlayer == 1) {
         pOneScore += +lastScore;
         playerOneScore.innerHTML = pOneScore;
-        currentPlayer--;
+        switchPlayer();
         marker();
         lastScore = 0;
         return;
     } if(currentPlayer == 0) {
         pTwoScore += +lastScore;
         playerTwoScore.innerHTML = pTwoScore;
-        currentPlayer++;
+        switchPlayer();
         marker();
         lastScore = 0;
         return;
@@ -80,20 +84,21 @@ function startGame() {
         pTwoScore += 1001;
         playerOneScore.innerText = pOneScore;
         playerTwoScore.innerText = pTwoScore;
+        startingScore += 1001;
     }
     if (fiveOOne.checked) {
         pOneScore += 501;
         pTwoScore += 501;
         playerOneScore.innerText = pOneScore;
         playerTwoScore.innerText = pTwoScore;
-        startingScore++;
+        startingScore += 501;
     }
     if (threeOOne.checked) {
         pOneScore += 301;
         pTwoScore += 301;
         playerOneScore.innerText = pOneScore;
         playerTwoScore.innerText = pTwoScore;
-        startingScore += 2;
+        startingScore += 301;
     }
     startGameDiv.style.display = "none";
     thrower.style.display = "block";
@@ -114,7 +119,7 @@ function noNames() {
 
 function whoThrows() {
     if (playerTwoFirst.checked) {
-        currentPlayer++;
+        switchPlayer();
     }
     display.style.display = "grid";
     displayTwo.style.display = "grid";
@@ -150,13 +155,13 @@ function bust() {
     let y = pTwoScore - userInput.value;
     if((x < 0 || x == 1) && currentPlayer == 0) {
         userInput.value = "";
-        currentPlayer++;
+        switchPlayer();
         marker();
         alert("P1 Bust!");
         return true;
     } if((y < 0 || y == 1) && currentPlayer == 1) {
         userInput.value = "";
-        currentPlayer--;
+        switchPlayer();
         marker();
         alert("P2 Bust!");
         return true;
@@ -164,25 +169,11 @@ function bust() {
 }
 
 function newLeg() {
-    if (startingScore == 0) {
-        pOneScore = 1001;
-        playerOneScore.innerHTML = pOneScore;
-        pTwoScore = 1001;
-        playerTwoScore.innerHTML = pTwoScore;
-    }
-    if (startingScore == 1) {
-        pOneScore = 501;
-        playerOneScore.innerHTML = pOneScore;
-        pTwoScore = 501;
-        playerTwoScore.innerHTML = pTwoScore;
-    }
-    if (startingScore == 2) {
-        pOneScore = 301;
-        playerOneScore.innerHTML = pOneScore;
-        pTwoScore = 301;
-        playerTwoScore.innerHTML = pTwoScore;
-    }
-    lastScore = 0;
+        pOneScore = startingScore;
+        playerOneScore.innerHTML = startingScore;
+        pTwoScore = startingScore;
+        playerTwoScore.innerHTML = startingScore;
+        lastScore = 0;
 } // Start refractoring all code before adding anymore features.//
 
 function checkout () { 
@@ -224,14 +215,14 @@ function minusScore() {
         lastScore = userInput.value;
         pOneScore -= userInput.value;
         playerOneScore.innerHTML = pOneScore;
-        currentPlayer++;
+        switchPlayer();
         marker();
 
     } else if (currentPlayer == 1) {
         lastScore = userInput.value;
         pTwoScore -= userInput.value;
         playerTwoScore.innerHTML = pTwoScore;
-        currentPlayer--;
+        switchPlayer();
         marker();
     }
     checkout();
