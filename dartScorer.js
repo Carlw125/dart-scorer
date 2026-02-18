@@ -22,6 +22,8 @@ const playerTwoFirst = document.getElementById("playerTwoFirst");
 const clearBtn = document.getElementById("clear");
 const undoBtn = document.getElementById("undo");
 const checkoutsContainer = document.getElementById("checkoutsDiv");
+const players = [{name: "Player one", score: 0, display: playerOneScore},
+                {name: "Player two", score: 0, display: playerTwoScore}];
 let checkoutsData;
 
 fetch('./checkouts.json' )
@@ -55,67 +57,48 @@ function undoLastScore() {
     if(lastScore == 0) {
         return;
     } else {
-    if(currentPlayer == 1) {
-        pOneScore += +lastScore;
-        playerOneScore.innerHTML = pOneScore;
+        players[currentPlayer].score += +lastScore;
+        players[currentPlayer].display.innerHTML = players[currentPlayer].score;
         switchPlayer();
         marker();
         lastScore = 0;
         return;
-    } if(currentPlayer == 0) {
-        pTwoScore += +lastScore;
-        playerTwoScore.innerHTML = pTwoScore;
-        switchPlayer();
-        marker();
-        lastScore = 0;
-        return;
-    }
 }
 }
-
 
 function startGame() {
-    playerOneName.innerText = playerOneNameInput.value;
-    playerTwoName.innerText = playerTwoNameInput.value;
-    nameOne.innerText = playerOneNameInput.value;
-    nameTwo.innerText = playerTwoNameInput.value;
-    if (oneKOne.checked) {
-        pOneScore += 1001;
-        pTwoScore += 1001;
-        playerOneScore.innerText = pOneScore;
-        playerTwoScore.innerText = pTwoScore;
-        startingScore += 1001;
-    }
-    if (fiveOOne.checked) {
-        pOneScore += 501;
-        pTwoScore += 501;
-        playerOneScore.innerText = pOneScore;
-        playerTwoScore.innerText = pTwoScore;
-        startingScore += 501;
-    }
-    if (threeOOne.checked) {
-        pOneScore += 301;
-        pTwoScore += 301;
-        playerOneScore.innerText = pOneScore;
-        playerTwoScore.innerText = pTwoScore;
-        startingScore += 301;
-    }
+    players[0].name = playerOneNameInput.value;
+    players[1].name = playerTwoNameInput.value;
+    playerOneName.innerText = players[0].name;
+    playerTwoName.innerText = players[1].name;
+    nameOne.innerText = players[0].name;
+    nameTwo.innerText = players[1].name;
+    const selected = document.querySelector('input[name="starting"]:checked');
+    const value = selected ? selected.value : null;
+    players[0].score += +value;
+    players[1].score += +value;
+    playerOneScore.innerText = players[0].score;
+    playerTwoScore.innerText = players[1].score;
+    startingScore += +value;
     startGameDiv.style.display = "none";
     thrower.style.display = "block";
     noNames();
+    console.log(players[0].score);
 
 }
 
 function noNames() {
     if (playerOneNameInput.value == "") {
-        playerOneName.innerText = "Player One";
-        nameOne.innerText = "Player One";
+        players[0].name = "Player One";
+        playerOneName.innerText = players[0].name;
+        nameOne.innerText = players[0].name;
     }
     if (playerTwoNameInput.value == "") {
-        playerTwoName.innerText = "Player Two";
-        nameTwo.innerText = "Player Two";
+        players[1].name = "Player Two";
+        playerTwoName.innerText = players[1].name;
+        nameTwo.innerText = players[1].name;
     }
-}
+} // look into how to not overwrite players names with leaving the playerNamesInput's empty. Then noNames() function will not be required.//
 
 function whoThrows() {
     if (playerTwoFirst.checked) {
@@ -151,8 +134,8 @@ function checkInvalidScore(score) {
 }
 
 function bust() {
-    let x = pOneScore - userInput.value;
-    let y = pTwoScore - userInput.value;
+    let x = players[0].score - userInput.value;
+    let y = players[1].score - userInput.value;
     if((x < 0 || x == 1) && currentPlayer == 0) {
         userInput.value = "";
         switchPlayer();
@@ -169,33 +152,29 @@ function bust() {
 }
 
 function newLeg() {
-        pOneScore = startingScore;
+        players[0].score = startingScore;
         playerOneScore.innerHTML = startingScore;
-        pTwoScore = startingScore;
+        players[1].score = startingScore;
         playerTwoScore.innerHTML = startingScore;
         lastScore = 0;
 } // Start refractoring all code before adding anymore features.//
 
 function checkout () { 
-    if (currentPlayer == 0) {
-        checkoutsContainer.innerHTML = checkoutsData[pOneScore];
-    } if (currentPlayer == 1) {
-        checkoutsContainer.innerHTML = checkoutsData[pTwoScore];
-    } if (checkoutsContainer.innerHTML == "undefined") {
+    checkoutsContainer.innerHTML = checkoutsData[players[currentPlayer].score];
+     if (checkoutsContainer.innerHTML == "undefined") {
         checkoutsContainer.innerHTML = "";
     }
     
 }
 
-
 function winGame() {
-    if(currentPlayer == 1 && pOneScore == 0) {
+    if(currentPlayer == 1 && players[0].score == 0) {
         pOneLegs++;
         document.getElementById("playerOneLegs").innerHTML = pOneLegs;
         newLeg();
         checkoutsContainer.innerHTML = "";
         alert("Player one wins!");
-    } if(currentPlayer == 0 && pTwoScore == 0) {{
+    } if(currentPlayer == 0 && players[1].score == 0) {{
         pTwoLegs++;
         document.getElementById("playerTwoLegs").innerHTML = pTwoLegs;
         newLeg();
@@ -211,20 +190,11 @@ function minusScore() {
     if(bust()) {
         return;
     }
-    else if (currentPlayer == 0) {
-        lastScore = userInput.value;
-        pOneScore -= userInput.value;
-        playerOneScore.innerHTML = pOneScore;
-        switchPlayer();
-        marker();
-
-    } else if (currentPlayer == 1) {
-        lastScore = userInput.value;
-        pTwoScore -= userInput.value;
-        playerTwoScore.innerHTML = pTwoScore;
-        switchPlayer();
-        marker();
-    }
+    lastScore = userInput.value;
+    players[currentPlayer].score -= userInput.value;        
+    players[currentPlayer].display.innerHTML = players[currentPlayer].score;
+    switchPlayer();
+    marker();
     checkout();
     userInput.value = "";
     winGame();
