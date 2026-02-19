@@ -4,6 +4,8 @@ const playerOneScore = document.getElementById("playerOneScore");
 const playerTwoScore = document.getElementById("playerTwoScore");
 const playerOneName = document.getElementById("playerOneName");
 const playerTwoName = document.getElementById("playerTwoName");
+const playerOneLegs = document.getElementById("playerOneLegs");
+const playerTwoLegs = document.getElementById("playerTwoLegs");
 const playerOneNameInput = document.getElementById("playerOneNameInput");
 const playerTwoNameInput = document.getElementById("playerTwoNameInput");
 const oneKOne = document.getElementById("1001");
@@ -22,8 +24,8 @@ const playerTwoFirst = document.getElementById("playerTwoFirst");
 const clearBtn = document.getElementById("clear");
 const undoBtn = document.getElementById("undo");
 const checkoutsContainer = document.getElementById("checkoutsDiv");
-const players = [{name: "Player one", score: 0, display: playerOneScore},
-                {name: "Player two", score: 0, display: playerTwoScore}];
+const players = [{name: "Player one", score: 0, scoreDisplay: playerOneScore, legs: 0, legsDisplay: playerOneLegs},
+                {name: "Player two", score: 0, scoreDisplay: playerTwoScore, legs: 0, legsDisplay: playerTwoLegs}];
 let checkoutsData;
 
 fetch('./checkouts.json' )
@@ -57,10 +59,11 @@ function undoLastScore() {
     if(lastScore == 0) {
         return;
     } else {
-        players[currentPlayer].score += +lastScore;
-        players[currentPlayer].display.innerHTML = players[currentPlayer].score;
         switchPlayer();
+        players[currentPlayer].score += +lastScore;
+        players[currentPlayer].scoreDisplay.innerHTML = players[currentPlayer].score;
         marker();
+        checkout();
         lastScore = 0;
         return;
 }
@@ -83,7 +86,6 @@ function startGame() {
     startGameDiv.style.display = "none";
     thrower.style.display = "block";
     noNames();
-    console.log(players[0].score);
 
 }
 
@@ -134,20 +136,10 @@ function checkInvalidScore(score) {
 }
 
 function bust() {
-    let x = players[0].score - userInput.value;
-    let y = players[1].score - userInput.value;
-    if((x < 0 || x == 1) && currentPlayer == 0) {
+    let x = players[currentPlayer].score - userInput.value;
+    if(x < 0 || x == 1) {
         userInput.value = "";
-        switchPlayer();
-        marker();
-        alert("P1 Bust!");
-        return true;
-    } if((y < 0 || y == 1) && currentPlayer == 1) {
-        userInput.value = "";
-        switchPlayer();
-        marker();
-        alert("P2 Bust!");
-        return true;
+        alert(players[currentPlayer].name + " Busts!");
     }
 }
 
@@ -163,24 +155,17 @@ function checkout () {
     checkoutsContainer.innerHTML = checkoutsData[players[currentPlayer].score];
      if (checkoutsContainer.innerHTML == "undefined") {
         checkoutsContainer.innerHTML = "";
-    }
-    
+    }   
 }
 
 function winGame() {
-    if(currentPlayer == 1 && players[0].score == 0) {
-        pOneLegs++;
-        document.getElementById("playerOneLegs").innerHTML = pOneLegs;
+    if(players[currentPlayer].score == 0) {
+        players[currentPlayer].legs++;
+        players[currentPlayer].legsDisplay.innerHTML = players[currentPlayer].legs;
         newLeg();
         checkoutsContainer.innerHTML = "";
-        alert("Player one wins!");
-    } if(currentPlayer == 0 && players[1].score == 0) {{
-        pTwoLegs++;
-        document.getElementById("playerTwoLegs").innerHTML = pTwoLegs;
-        newLeg();
-        checkoutsContainer.innerHTML = "";
-        alert("Player two wins!");
-    }}
+        alert(players[currentPlayer].name + " Wins!");
+    }
 }
 
 function minusScore() {
@@ -188,16 +173,18 @@ function minusScore() {
         return;
     } 
     if(bust()) {
+        switchPlayer();
+        marker();
         return;
     }
     lastScore = userInput.value;
     players[currentPlayer].score -= userInput.value;        
-    players[currentPlayer].display.innerHTML = players[currentPlayer].score;
+    players[currentPlayer].scoreDisplay.innerHTML = players[currentPlayer].score;
+    winGame();
     switchPlayer();
     marker();
     checkout();
     userInput.value = "";
-    winGame();
 }
 
 function clear() {
