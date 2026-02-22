@@ -24,6 +24,7 @@ const playerTwoFirst = document.getElementById("playerTwoFirst");
 const clearBtn = document.getElementById("clear");
 const undoBtn = document.getElementById("undo");
 const checkoutsContainer = document.getElementById("checkoutsDiv");
+const invalidScores = ["163", "166", "169", "172", "173", "175", "176", "178", "179"];
 const players = [{name: "Player one", score: 0, scoreDisplay: playerOneScore, legs: 0, legsDisplay: playerOneLegs},
                 {name: "Player two", score: 0, scoreDisplay: playerTwoScore, legs: 0, legsDisplay: playerTwoLegs}];
 let checkoutsData;
@@ -123,14 +124,19 @@ function marker() {
     }
 }
 
+
+function checkInvailid() {
+    return invalidScores.some((score => userInput.value === score));
+}
+
 function checkInvalidScore(score) {
     if (score > 180) {
         alert("Too High!");
-        userInput.value = "";
+        clearInput();
         return true;
-    } if (score < 0) {
+    } if (checkInvailid()) {
         alert("Impossible!");
-        userInput.value = "";
+        clearInput();
         return true;
     }
 }
@@ -138,7 +144,7 @@ function checkInvalidScore(score) {
 function bust() {
     let x = players[currentPlayer].score - userInput.value;
     if(x < 0 || x == 1) {
-        userInput.value = "";
+        clearInput();
         alert(players[currentPlayer].name + " Busts!");
     }
 }
@@ -184,15 +190,15 @@ function minusScore() {
     switchPlayer();
     marker();
     checkout();
-    userInput.value = "";
+    clearInput();
 }
 
-function clear() {
+function clearInput() {
     userInput.value = "";
 }
 
 startButton.addEventListener("click", startGame);
 throwerButton.addEventListener("click", whoThrows);
 submit.addEventListener("click", minusScore);
-clearBtn.addEventListener("click", clear);
+clearBtn.addEventListener("click", clearInput);
 undoBtn.addEventListener("click", undoLastScore);

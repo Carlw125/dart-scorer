@@ -26,8 +26,20 @@ a running log of bigs, fixes, and lessons learned.
 ### Fix: added "+" before lastScore to turn it back into integer. The problem never arrised on the minusScore function ass - automatically turns strings into integers so I never realised userInput.value was creating a string in the first place.
 ### Lesson: taking .value turns integer into string. Use + before the variable to turn back into integer. MAIN LESSON: Number + Number = Number. String + anything = string. Number - number = number. Number - String = number.
 
+---
+
 ### Bug: Input field for players names moving out of position when trying to increase font size.
 ### Sympton: Input field moves too far to the right when increasing font-size.
 ### Cause:
 ### Fix:
 ### Lesson:
+
+---
+
+### Bug: Created checkInvalid function with some() to loop through invalid scores for checkInvalidScore function but it stopped the if statement in the checkInvalid from working.
+### Sympton: When function is called, the if was returning false.
+### Cause: Didnt return the invalidScores.some((score => userInput.value === score)) so the if condition was getting passed "undefined" everytime which is falsy.
+### Fix: added return into checkInvalid function.
+### Lesson: Remember to add return in a function where I require a value from it.
+
+---
