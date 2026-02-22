@@ -8,9 +8,6 @@ const playerOneLegs = document.getElementById("playerOneLegs");
 const playerTwoLegs = document.getElementById("playerTwoLegs");
 const playerOneNameInput = document.getElementById("playerOneNameInput");
 const playerTwoNameInput = document.getElementById("playerTwoNameInput");
-const oneKOne = document.getElementById("1001");
-const fiveOOne = document.getElementById("501");
-const threeOOne = document.getElementById("301");
 const startButton = document.getElementById("start");
 const nameOne = document.getElementById("nameOne");
 const nameTwo = document.getElementById("nameTwo");
@@ -19,12 +16,10 @@ const display = document.getElementById("displayOne");
 const displayTwo = document.getElementById("displayTwo");
 const thrower = document.getElementById("thrower");
 const throwerButton = document.getElementById("throwerButton");
-const playerOneFirst = document.getElementById("playerOneFirst");
-const playerTwoFirst = document.getElementById("playerTwoFirst");
 const clearBtn = document.getElementById("clear");
 const undoBtn = document.getElementById("undo");
 const checkoutsContainer = document.getElementById("checkoutsDiv");
-const invalidScores = ["163", "166", "169", "172", "173", "175", "176", "178", "179"];
+const invalidScores = [163, 166, 169, 172, 173, 175, 176, 178, 179];
 const players = [{name: "Player one", score: 0, scoreDisplay: playerOneScore, legs: 0, legsDisplay: playerOneLegs},
                 {name: "Player two", score: 0, scoreDisplay: playerTwoScore, legs: 0, legsDisplay: playerTwoLegs}];
 let checkoutsData;
@@ -36,13 +31,8 @@ fetch('./checkouts.json' )
     });
 
 let currentPlayer = 0;
-let playerThrowFirst = 0;
 let startingScore = 0;
-let pOneScore = 0;
-let pTwoScore = 0;
 let lastScore = 0;
-let pOneLegs = 0;
-let pTwoLegs = 0;
 
 /*function testUi() {
     document.getElementById("test").innerText = currentPlayer;
@@ -63,7 +53,7 @@ function undoLastScore() {
         switchPlayer();
         players[currentPlayer].score += +lastScore;
         players[currentPlayer].scoreDisplay.innerHTML = players[currentPlayer].score;
-        marker();
+        switchPlayerMarker();
         checkout();
         lastScore = 0;
         return;
@@ -103,30 +93,30 @@ function noNames() {
     }
 } // look into how to not overwrite players names with leaving the playerNamesInput's empty. Then noNames() function will not be required.//
 
-function whoThrows() {
+function whoThrowsFirst() {
     if (playerTwoFirst.checked) {
         switchPlayer();
     }
     display.style.display = "grid";
     displayTwo.style.display = "grid";
     thrower.style.display = "none";
-    marker();
+    switchPlayerMarker();
 }
 
-function marker() {
+function switchPlayerMarker() {
     if (currentPlayer == 0) {
-        playerTwoName.style.backgroundColor = "#a1a2b3";
+        playerTwoName.style.backgroundColor = "#121212";
         playerOneName.style.backgroundColor = "green";
 
     } if (currentPlayer == 1) {
         playerTwoName.style.backgroundColor = "green";
-        playerOneName.style.backgroundColor = "#a1a2b3";
+        playerOneName.style.backgroundColor = "#121212";
     }
 }
 
 
 function checkInvailid() {
-    return invalidScores.some((score => userInput.value === score));
+    return invalidScores.some((score => +userInput.value === score));
 }
 
 function checkInvalidScore(score) {
@@ -180,7 +170,7 @@ function minusScore() {
     } 
     if(bust()) {
         switchPlayer();
-        marker();
+        switchPlayerMarker();
         return;
     }
     lastScore = userInput.value;
@@ -188,7 +178,7 @@ function minusScore() {
     players[currentPlayer].scoreDisplay.innerHTML = players[currentPlayer].score;
     winGame();
     switchPlayer();
-    marker();
+    switchPlayerMarker();
     checkout();
     clearInput();
 }
@@ -198,7 +188,7 @@ function clearInput() {
 }
 
 startButton.addEventListener("click", startGame);
-throwerButton.addEventListener("click", whoThrows);
+throwerButton.addEventListener("click", whoThrowsFirst);
 submit.addEventListener("click", minusScore);
 clearBtn.addEventListener("click", clearInput);
 undoBtn.addEventListener("click", undoLastScore);

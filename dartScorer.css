@@ -1,6 +1,23 @@
+:root {
+    /* Backgrounds */
+    --color-background: #121212;
+    --color-surface: #1E1E1E;
+  
+    /* Primary Dartboard Colors */
+    --color-primary: #C62828;   /* Dart Red */
+    --color-secondary: #2E7D32; /* Dart Green */
+  
+    /* Accent / Highlight */
+    --color-highlight: #F9A825; /* Gold */
+  
+    /* Text */
+    --color-text-primary: #FFFFFF;
+    --color-text-secondary: #B0BEC5;
+  }
+
 h1 {
     text-align: center;
-    color: #c0c0c2;
+    color: var(--color-text-primary);
     font-size: 70px;
     margin-top: 5px;
 }
@@ -11,7 +28,8 @@ body {
     width: 800px;
     margin: 50px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #090c4f;
+    background-color: var(--color-background);
+    color: var(--color-text-secondary);
 }
 
 #displayOne{
@@ -29,14 +47,14 @@ body {
 
 .headers {
     border-radius: 80px;
-    background-color: white;
-    color: black;
+    background-color: var(--color-background);
+    color: var(--color-text-primary);
     font-size: 30px;
     border-radius: 20px;
 }
 
 #playerOneLegsTitle, #playerTwoLegsTitle {
-    background-color: #a1a2b3;
+    background-color: var(--color-background);
 }
 
 #displayTwo {
@@ -60,18 +78,20 @@ body {
 }
 
 #thrower {
-    position: absolute;
+    text-align: center;
+    position: relative;
     margin: 50px;
-    margin-left: 275px;
+    font-size: 35px;
+    color: var(--color-text-secondary);
 }
 
 #undo:hover {
-    background-color: red;
+    background-color: var(--color-primary);
 }
 
 #displayTwo button {
-    background-color: white;
-    color: black;
+    background-color: var(--color-surface);
+    color: var(--color-text-secondary);
     font-size: 30px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     border-radius: 40px;
@@ -88,14 +108,14 @@ body {
 }
 
 #displayTwo button:hover {
-    background-color: green;
+    background-color: var(--color-secondary);
 }
 
 #displayTwo #undo:hover {
-    background-color: red;
+    background-color: var(--color-primary);
 }
 
 #displayTwo #clear:hover {
-    background-color: red;
+    background-color: var(--color-primary);
 }
 
