@@ -1,16 +1,10 @@
 :root {
-    /* Backgrounds */
+    
     --color-background: #121212;
     --color-surface: #1E1E1E;
-  
-    /* Primary Dartboard Colors */
-    --color-primary: #C62828;   /* Dart Red */
-    --color-secondary: #2E7D32; /* Dart Green */
-  
-    /* Accent / Highlight */
-    --color-highlight: #F9A825; /* Gold */
-  
-    /* Text */
+    --color-primary: #C62828;
+    --color-secondary: #2E7D32;
+    --color-highlight: #F9A825;
     --color-text-primary: #FFFFFF;
     --color-text-secondary: #B0BEC5;
   }

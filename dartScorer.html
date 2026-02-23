@@ -7,51 +7,50 @@
     <title>Darts Scorer</title>
 </head>
 <body>
-    <h1>Darts Scorer</h1>
-    <div id="checkoutsDiv"></div>
-    <div id="displayOne" style="display: none;"><!--add style="display: none;" once finished styling-->
-        <div id="playerOneLegsTitle" class="headers">Legs</div>
-        <div id="playerOneLegs" class="headers">0</div>
-        <div id="playerTwoLegsTitle" class="headers">Legs</div>
-        <div id="playerTwoLegs" class="headers">0</div>
-        <div id="playerOneName" class="headers"></div>
-        <div id="playerOneScore" class="headers"></div>
-        <div id="playerTwoName" class="headers"></div>
-        <div id="playerTwoScore" class="headers"></div>
+    <h1 class="header">Darts Scorer</h1>
+    <div id="checkoutsDiv" class="checkouts-display"></div>
+    <div id="displayOne" style="display: none;" class="names-and-scores"><!--add style="display: none;" once finished styling-->
+        <div id="playerOneLegsTitle" class="names-and-scores__legs">Legs</div>
+        <div id="playerOneLegs" class="names-and-scores__legs">0</div>
+        <div id="playerTwoLegsTitle" class="names-and-scores__legs">Legs</div>
+        <div id="playerTwoLegs" class="names-and-scores__legs">0</div>
+        <div id="playerOneName" class="names-and-scores__names"></div>
+        <div id="playerOneScore" class="names-and-scores__score"></div>
+        <div id="playerTwoName" class="names-and-scores__names"></div>
+        <div id="playerTwoScore" class="names-and-scores__score"></div>
     </div>
-    <div id="displayTwo" style="display: none;">
-        <button id="undo">Undo</button>
-        <input id="userInput" type="number" placeholder="Enter Score..." autofocus></input>
-        <button id="clear">Clear</button>
-        <button onclick="numBtnInput(0)">0</button>
-        <button onclick="numBtnInput(1)">1</button>
-        <button onclick="numBtnInput(2)">2</button>
-        <button onclick="numBtnInput(3)">3</button>
-        <button onclick="numBtnInput(4)">4</button>
-        <button onclick="numBtnInput(5)">5</button>
-        <button onclick="numBtnInput(6)">6</button>
-        <button onclick="numBtnInput(7)">7</button>
-        <button onclick="numBtnInput(8)">8</button>
-        <button onclick="numBtnInput(9)">9</button>
-        <button id="submit">Submit</button>
-        <div id="test"></div>
+    <div id="displayTwo" style="display: none;" class="buttons">
+        <button id="undo" class="buttons__undo">Undo</button>
+        <input id="userInput" type="number" placeholder="Enter Score..." class="buttons__input" autofocus></input>
+        <button id="clear" class="buttons__clear">Clear</button>
+        <button onclick="numBtnInput(0)" class="buttons__number">0</button>
+        <button onclick="numBtnInput(1)" class="buttons__number">1</button>
+        <button onclick="numBtnInput(2)" class="buttons__number">2</button>
+        <button onclick="numBtnInput(3)" class="buttons__number">3</button>
+        <button onclick="numBtnInput(4)" class="buttons__number">4</button>
+        <button onclick="numBtnInput(5)" class="buttons__number">5</button>
+        <button onclick="numBtnInput(6)" class="buttons__number">6</button>
+        <button onclick="numBtnInput(7)" class="buttons__number">7</button>
+        <button onclick="numBtnInput(8)" class="buttons__number">8</button>
+        <button onclick="numBtnInput(9)" class="buttons__number">9</button>
+        <button id="submit" class="buttons__submit">Submit</button>
     </div>
-    <div id="startGame"> <!--display none only whilst doing CSS on display div-->
-        <legend>Players Names</legend>
-        <input placeholder="Player One Name" id="playerOneNameInput">
-        <input placeholder="Player Two Name" id="playerTwoNameInput">
-        <legend>Starting Score</legend>
-        <label for="1001"><input type="radio" id="1001" name="starting" value="1001">1001</label>
-        <label for="501"><input type="radio" id="501" checked name="starting" value="501">501</label>
-        <label for="301"><input type="radio" id="301" name="starting" value="301">301</label>
-        <button id="start">Next</button>
+    <div id="startGame" class="setup"> <!--display none only whilst doing CSS on display div-->
+        <legend class="setup__players-names-title">Players Names</legend>
+        <input placeholder="Player One Name" id="playerOneNameInput" class="setup__player-name-input">
+        <input placeholder="Player Two Name" id="playerTwoNameInput" class="setup__player-name-input">
+        <legend class="setup__starting-score-title">Starting Score</legend>
+        <label for="1001"><input type="radio" id="1001" name="starting" value="1001" class="setup__radio-button">1001</label>
+        <label for="501"><input type="radio" id="501" checked name="starting" value="501" class="setup__radio-button">501</label>
+        <label for="301"><input type="radio" id="301" name="starting" value="301" class="setup__radio-button">301</label>
+        <button id="start" class="setup__start-button">Next</button>
     </div>
-    <div id="thrower" style="display: none;">
-        <legend>Who Throws First?</legend>
-        <label for="playerOneFirst"></label><input type="radio" id="playerOneFirst" name="throw" checked><span id="nameOne">
+    <div id="thrower" style="display: none;" class="first-thrower-setup">
+        <legend class="first-thrower-setup__title">Who Throws First?</legend>
+        <label for="playerOneFirst"></label><input type="radio" id="playerOneFirst" name="throw" class="first-thrower-setup__radio-button" checked><span id="nameOne">
         </span></label>
-        <label for="playerTwoFirst"><input type="radio" id="playerTwoFirst" name="throw"><span id="nameTwo"></span></label>
-        <button id="throwerButton">Next</button>
+        <label for="playerTwoFirst"><input type="radio" id="playerTwoFirst" name="throw" class="first-thrower-setup__radio-button"><span id="nameTwo"></span></label>
+        <button id="throwerButton" class="first-thrower-setup__next-button">Next</button>
     </div>
     <script src="dartScorer.js"></script>
 </body>
