@@ -9,7 +9,7 @@
     --color-text-secondary: #B0BEC5;
   }
 
-h1 {
+.header {
     text-align: center;
     color: var(--color-text-primary);
     font-size: 70px;
@@ -26,7 +26,7 @@ body {
     color: var(--color-text-secondary);
 }
 
-#displayOne{
+.names-and-scores {
     display: grid;
     grid-template-columns: auto auto auto auto;
     font-size: 30px;
@@ -35,11 +35,8 @@ body {
     margin-bottom: 10px;
 }
 
-#displayOne div {
+.names-and-scores__legs, .names-and-scores__names, .names-and-scores__score, .names-and-scores__legs-title {
     border-style: solid;
-}
-
-.headers {
     border-radius: 80px;
     background-color: var(--color-background);
     color: var(--color-text-primary);
@@ -47,43 +44,14 @@ body {
     border-radius: 20px;
 }
 
-#playerOneLegsTitle, #playerTwoLegsTitle {
-    background-color: var(--color-background);
-}
-
-#displayTwo {
+.buttons {
     display: grid;
     grid-template-columns: auto 270px auto;
     height: 300px;
     border-radius: 20px;
 }
 
-#startGame {
-    position: absolute;
-    margin: 50px;
-    margin-left: 200px;
-    text-align: center;
-    font-size: 40px;
-}
-
-#startGame input {
-    font-size: 30px;
-    text-align: center;
-}
-
-#thrower {
-    text-align: center;
-    position: relative;
-    margin: 50px;
-    font-size: 35px;
-    color: var(--color-text-secondary);
-}
-
-#undo:hover {
-    background-color: var(--color-primary);
-}
-
-#displayTwo button {
+.buttons__undo, .buttons__clear, .buttons__number, .buttons__submit {
     background-color: var(--color-surface);
     color: var(--color-text-secondary);
     font-size: 30px;
@@ -92,24 +60,40 @@ body {
     transition-duration: 0.3s;
     margin: 5px;
     box-shadow: 4px 4px;
-
 }
 
-#displayTwo #userInput {
+.buttons__input {
     font-size: 30px;
     border-radius: 40px;
     text-align: center;
 }
 
-#displayTwo button:hover {
+.buttons__number:hover, .buttons__submit:hover {
     background-color: var(--color-secondary);
 }
 
-#displayTwo #undo:hover {
+.buttons__undo:hover, .buttons__clear:hover {
     background-color: var(--color-primary);
 }
 
-#displayTwo #clear:hover {
-    background-color: var(--color-primary);
+.setup {
+    position: absolute;
+    margin: 50px;
+    margin-left: 200px;
+    text-align: center;
+    font-size: 40px;
+}
+
+.setup__player-name-input {
+    font-size: 30px;
+    text-align: center;
+}
+
+.first-thrower-setup {
+    text-align: center;
+    position: relative;
+    margin: 50px;
+    font-size: 35px;
+    color: var(--color-text-secondary);
 }
 
