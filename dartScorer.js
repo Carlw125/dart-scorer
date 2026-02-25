@@ -33,36 +33,11 @@ fetch('./checkouts.json' )
 let currentPlayer = 0;
 let startingScore = 0;
 let lastScore = 0;
-
-/*function testUi() {
-    document.getElementById("test").innerText = currentPlayer;
-}*/
-
-function numBtnInput(value) {
-    userInput.value += value;
-}
-
-function switchPlayer() {
-    return currentPlayer == 1 ? currentPlayer-- : currentPlayer++;
-}
-
-function undoLastScore() {
-    if(lastScore == 0) {
-        return;
-    } else {
-        switchPlayer();
-        players[currentPlayer].score += +lastScore;
-        players[currentPlayer].scoreDisplay.innerHTML = players[currentPlayer].score;
-        switchPlayerMarker();
-        checkout();
-        lastScore = 0;
-        return;
-}
-}
+let startingPlayer = 0;
 
 function startGame() {
-    players[0].name = playerOneNameInput.value;
-    players[1].name = playerTwoNameInput.value;
+    players[0].name = playerOneNameInput.value || "Player One";
+    players[1].name = playerTwoNameInput.value || "Player Two";
     playerOneName.innerText = players[0].name;
     playerTwoName.innerText = players[1].name;
     nameOne.innerText = players[0].name;
@@ -77,30 +52,10 @@ function startGame() {
     startGameDiv.style.display = "none";
     thrower.style.display = "block";
     noNames();
-
 }
 
-function noNames() {
-    if (playerOneNameInput.value == "") {
-        players[0].name = "Player One";
-        playerOneName.innerText = players[0].name;
-        nameOne.innerText = players[0].name;
-    }
-    if (playerTwoNameInput.value == "") {
-        players[1].name = "Player Two";
-        playerTwoName.innerText = players[1].name;
-        nameTwo.innerText = players[1].name;
-    }
-} // look into how to not overwrite players names with leaving the playerNamesInput's empty. Then noNames() function will not be required.//
-
-function whoThrowsFirst() {
-    if (playerTwoFirst.checked) {
-        switchPlayer();
-    }
-    display.style.display = "grid";
-    displayTwo.style.display = "grid";
-    thrower.style.display = "none";
-    switchPlayerMarker();
+function switchPlayer() {
+    return currentPlayer == 1 ? currentPlayer-- : currentPlayer++;
 }
 
 function switchPlayerMarker() {
@@ -114,6 +69,20 @@ function switchPlayerMarker() {
     }
 }
 
+function whoThrowsFirst() {
+    if (playerTwoFirst.checked) {
+        switchPlayer();
+        startingPlayer++;
+    }
+    display.style.display = "grid";
+    displayTwo.style.display = "grid";
+    thrower.style.display = "none";
+    switchPlayerMarker();
+}
+
+function numBtnInput(value) {
+    userInput.value += value;
+}
 
 function checkInvailid() {
     return invalidScores.some((score => +userInput.value === score));
@@ -139,14 +108,6 @@ function bust() {
     }
 }
 
-function newLeg() {
-        players[0].score = startingScore;
-        playerOneScore.innerHTML = startingScore;
-        players[1].score = startingScore;
-        playerTwoScore.innerHTML = startingScore;
-        lastScore = 0;
-} // Start refractoring all code before adding anymore features.//
-
 function checkout () { 
     checkoutsContainer.innerHTML = checkoutsData[players[currentPlayer].score];
      if (checkoutsContainer.innerHTML == "undefined") {
@@ -154,14 +115,22 @@ function checkout () {
     }   
 }
 
-function winGame() {
-    if(players[currentPlayer].score == 0) {
-        players[currentPlayer].legs++;
-        players[currentPlayer].legsDisplay.innerHTML = players[currentPlayer].legs;
-        newLeg();
-        checkoutsContainer.innerHTML = "";
-        alert(players[currentPlayer].name + " Wins!");
-    }
+function undoLastScore() {
+    if(lastScore == 0) {
+        return;
+    } else {
+        switchPlayer();
+        players[currentPlayer].score += +lastScore;
+        players[currentPlayer].scoreDisplay.innerHTML = players[currentPlayer].score;
+        switchPlayerMarker();
+        checkout();
+        lastScore = 0;
+        return;
+}
+}
+
+function clearInput() {
+    userInput.value = "";
 }
 
 function minusScore() {
@@ -183,8 +152,28 @@ function minusScore() {
     clearInput();
 }
 
-function clearInput() {
-    userInput.value = "";
+function winGame() {
+    if(players[currentPlayer].score == 0) {
+        players[currentPlayer].legs++;
+        players[currentPlayer].legsDisplay.innerHTML = players[currentPlayer].legs;
+        newLeg();
+        checkoutsContainer.innerHTML = "";
+        alert(players[currentPlayer].name + " Wins!");
+    }
+}
+
+function whoStarted () {
+    startingPlayer == 0 ? startingPlayer++ : startingPlayer --;
+    currentPlayer == startingPlayer ? switchPlayer() : currentPlayer;
+}
+
+function newLeg() {
+        players[0].score = startingScore;
+        playerOneScore.innerHTML = startingScore;
+        players[1].score = startingScore;
+        playerTwoScore.innerHTML = startingScore;
+        lastScore = 0;
+        whoStarted();
 }
 
 startButton.addEventListener("click", startGame);

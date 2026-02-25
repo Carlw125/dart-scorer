@@ -9,21 +9,37 @@
     --color-text-secondary: #B0BEC5;
   }
 
+  
+ /* * {
+    border: 1px solid red;
+  } */
+
+
 .header {
     text-align: center;
     color: var(--color-text-primary);
     font-size: 70px;
-    margin-top: 5px;
+    margin: 0px;
+    padding-bottom: 5px;
 }
 
 body {
     position: absolute;
     height: 500px;
     width: 800px;
-    margin: 50px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: var(--color-background);
     color: var(--color-text-secondary);
+}
+
+.checkouts-display {
+    min-height: 50px;
+    max-height: 50px;
+    margin-bottom: 5px;
+    text-align: center;
+    font-size: 40px;
+    color: var(--color-highlight);
+    font-weight: bold;
 }
 
 .names-and-scores {
@@ -33,6 +49,10 @@ body {
     text-align: center;
     border-radius: 20px;
     margin-bottom: 10px;
+}
+
+.names-and-scores__score, .names-and-scores__legs {
+    min-width: 50px;
 }
 
 .names-and-scores__legs, .names-and-scores__names, .names-and-scores__score, .names-and-scores__legs-title {
@@ -79,7 +99,6 @@ body {
 .setup {
     position: absolute;
     margin: 50px;
-    margin-left: 200px;
     text-align: center;
     font-size: 40px;
 }
@@ -87,6 +106,7 @@ body {
 .setup__player-name-input {
     font-size: 30px;
     text-align: center;
+    border-radius: 30px;
 }
 
 .first-thrower-setup {

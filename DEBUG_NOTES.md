@@ -30,9 +30,9 @@ a running log of bigs, fixes, and lessons learned.
 
 ### Bug: Input field for players names moving out of position when trying to increase font size.
 ### Sympton: Input field moves too far to the right when increasing font-size.
-### Cause:
-### Fix:
-### Lesson:
+### Cause: Input field had a margin left value.
+### Fix: Used * to give every element a border of 1px and red so I could identify easily which elements were not alligned easier.
+### Lesson: Use * with a border in future projects to help visualize page structure.
 
 ---
 
@@ -41,5 +41,13 @@ a running log of bigs, fixes, and lessons learned.
 ### Cause: Didnt return the invalidScores.some((score => userInput.value === score)) so the if condition was getting passed "undefined" everytime which is falsy.
 ### Fix: added return into checkInvalid function.
 ### Lesson: Remember to add return in a function where I require a value from it.
+
+---
+
+### Bug: Look into how to automatically assing "Player One" and "Player Two" names on player name inputs to avoid having noNames() function.
+### Sympton: 
+### Cause:
+### Fix: Used || (Fallback)
+### Lesson: || is a fallback for if first value is non existent. So when assinging potential names, use || encase the input is empty.
 
 ---
