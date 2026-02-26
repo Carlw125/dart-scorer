@@ -109,6 +109,20 @@ body {
     border-radius: 30px;
 }
 
+.setup__start-button {
+    font-size: 40px;
+    font-weight: bold;
+    border-radius: 20px;
+    background-color: var(--color-primary);
+    color: var(--color-text-secondary);
+    border: none;
+}
+
+.setup__start-button:hover {
+    background-color: var(--color-secondary);
+    transition-duration: 0.4s;
+}
+
 .first-thrower-setup {
     text-align: center;
     position: relative;
@@ -117,3 +131,16 @@ body {
     color: var(--color-text-secondary);
 }
 
+.first-thrower-setup__next-button {
+    font-size: 40px;
+    font-weight: bold;
+    border-radius: 20px;
+    background-color: var(--color-primary);
+    color: var(--color-text-secondary);
+    border: none;
+}
+
+.first-thrower-setup__next-button:hover {
+    background-color: var(--color-secondary);
+    transition-duration: 0.4s;
+}

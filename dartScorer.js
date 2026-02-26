@@ -81,7 +81,9 @@ function whoThrowsFirst() {
 }
 
 function numBtnInput(value) {
+    if(userInput.value.length < 3) {
     userInput.value += value;
+    }
 }
 
 function checkInvailid() {
