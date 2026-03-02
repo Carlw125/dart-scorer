@@ -51,3 +51,11 @@ a running log of bigs, fixes, and lessons learned.
 ### Lesson: || is a fallback for if first value is non existent. So when assinging potential names, use || encase the input is empty.
 
 ---
+
+### Bug: Need to remove hover on buttons for mediq queries.
+### Sympton: 
+### Cause: 
+### Fix: Changed backgorund color of hover buttons to match buttons.
+### Lesson: When creating new project, start with styling for smallest device then work upwards to biggest to avoid messy code.
+
+---

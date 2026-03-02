@@ -51,7 +51,6 @@ function startGame() {
     startingScore += +value;
     startGameDiv.style.display = "none";
     thrower.style.display = "block";
-    noNames();
 }
 
 function switchPlayer() {

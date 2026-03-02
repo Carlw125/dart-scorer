@@ -9,12 +9,6 @@
     --color-text-secondary: #B0BEC5;
   }
 
-  
- /* * {
-    border: 1px solid red;
-  } */
-
-
 .header {
     text-align: center;
     color: var(--color-text-primary);
@@ -60,7 +54,6 @@ body {
     border-radius: 80px;
     background-color: var(--color-background);
     color: var(--color-text-primary);
-    font-size: 30px;
     border-radius: 20px;
 }
 
@@ -143,4 +136,37 @@ body {
 .first-thrower-setup__next-button:hover {
     background-color: var(--color-secondary);
     transition-duration: 0.4s;
+}
+
+@media only screen and (max-width: 768px) {
+    body {max-width: 750px;}
+    .buttons__number:hover, .buttons__submit:hover, .buttons__undo:hover, .buttons__clear:hover {
+        background-color: var(--color-surface);}
+    .first-thrower-setup__next-button:hover, .setup__start-button:hover {
+        background-color: var(--color-primary);
+    }
+  }
+
+@media only screen and (max-width: 600px) {
+    body {max-width: 580px;}
+    .names-and-scores {font-size: 25px;}
+    .buttons__number:hover, .buttons__submit:hover, .buttons__undo:hover, .buttons__clear:hover {
+        background-color: var(--color-surface);}
+    .first-thrower-setup__next-button:hover, .setup__start-button:hover {
+        background-color: var(--color-primary);}
+}
+
+@media only screen and (max-width: 480px) {
+    body {max-width: 470px;}
+    .names-and-scores {font-size: 20px;}
+    .setup {font-size: 30px;}
+    .setup__player-name-input {font-size: 25px;}
+    .first-thrower-setup {font-size: 30px;}
+    .first-thrower-setup__next-button {font-size: 30px;}
+    .buttons {grid-template-columns: auto 180px auto;}
+    .buttons__input {font-size: 25px;}
+    .buttons__number:hover, .buttons__submit:hover, .buttons__undo:hover, .buttons__clear:hover {
+        background-color: var(--color-surface);}
+    .first-thrower-setup__next-button:hover, .setup__start-button:hover {
+        background-color: var(--color-primary);}
 }
