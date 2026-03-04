@@ -52,10 +52,18 @@ a running log of bigs, fixes, and lessons learned.
 
 ---
 
-### Bug: Need to remove hover on buttons for mediq queries.
+### Bug: Need to remove hover on buttons for media queries.
 ### Sympton: 
 ### Cause: 
 ### Fix: Changed backgorund color of hover buttons to match buttons.
 ### Lesson: When creating new project, start with styling for smallest device then work upwards to biggest to avoid messy code.
+
+---
+
+### Bug: Media queries seem to be doing job looking at devtools. But once opening on real iphone, page not displaying correctly.
+### Sympton: Main names-and-scores container moving off screen on iphone.
+### Cause: Using fixed width and height pixels.
+### Fix: Set body width too 100%. Set max width too width required (800px), set margin too 0 auto to center everything.
+### Lesson: Avoid using set widths, set heights and position absolutes. Utilise flexbox and grid for responsive layouts.
 
 ---

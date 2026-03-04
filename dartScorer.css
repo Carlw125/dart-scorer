@@ -18,9 +18,10 @@
 }
 
 body {
-    position: absolute;
-    height: 500px;
-    width: 800px;
+    max-height: 500px;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: var(--color-background);
     color: var(--color-text-secondary);
@@ -90,8 +91,7 @@ body {
 }
 
 .setup {
-    position: absolute;
-    margin: 50px;
+    margin: 0;
     text-align: center;
     font-size: 40px;
 }
@@ -118,8 +118,7 @@ body {
 
 .first-thrower-setup {
     text-align: center;
-    position: relative;
-    margin: 50px;
+    margin: 0;
     font-size: 35px;
     color: var(--color-text-secondary);
 }
